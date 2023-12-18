@@ -1,0 +1,29 @@
+#Pagehelper配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countsql
+
+# MinIO配置
+#现在还没有配置好
+#minio:
+#  url: http://139.224.70.154:9000
+#  accessKey: fileadmin
+#  secretKey: fileadmin
+#  bucketName: bookkeeping
+#  previewExpiry: 24
+
+
+server:
+  port: 8090
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://139.224.70.154:3306/BookKeeping?characterEncoding=utf8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: Sjzt|123
+
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
