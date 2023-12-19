@@ -35,5 +35,8 @@ public class Browtable implements Serializable {
     @TableField("browTime")
     private Date browTime;
 
+    @TableField("isReturned")
+    private Date isReturned;
+
 
 }
