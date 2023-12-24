@@ -8,6 +8,7 @@ import com.example.emb.mapper.ClassdtableMapper;
 import com.example.emb.mapper.ClasstableMapper;
 import com.example.emb.mapper.UsrtableMapper;
 import com.example.emb.service.TeacherImpStuService;
+import com.example.emb.service.exception.DeleteErrorException;
 import com.example.emb.service.exception.UsrNotFoundException;
 import com.example.emb.service.exception.repeatClassException;
 import org.apache.poi.ss.usermodel.Row;
@@ -21,7 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class TeacherImpStuServiceImpl implements TeacherImpStuService {
@@ -106,8 +109,38 @@ public class TeacherImpStuServiceImpl implements TeacherImpStuService {
             throw new UsrNotFoundException("该学生不存在");
         }
         Classdtable classStu=new Classdtable();
+        Classtable classLearning=classtableMapper.selectById(classId);
         classStu.setClassId(classId)
                 .setStuId(usr.getId())
-                .setStuName(usr.getName());
+                .setStuName(usr.getName())
+                .setClassName(classLearning.getClassName());
+        classdtableMapper.insert(classStu);
     }
+
+    @Override
+    public void DeleteStu(int classStuId) {
+        if(classdtableMapper.deleteById(classStuId)==0)
+            throw  new DeleteErrorException("移除失败");
+        return;
+    }
+
+    @Override
+    public List<Usrtable> searchStu(Classdtable Stu, int classId) {
+        QueryWrapper<Classdtable> queryWrapper=new QueryWrapper<>();
+        QueryWrapper<Classtable> queryWrapper1=new QueryWrapper<>();
+        queryWrapper1.eq("classId",classId);
+        Classtable classtable=classtableMapper.selectOne(queryWrapper1);
+        queryWrapper.eq("classId",classId)
+                        .eq("className",classtable.getClassName())
+                                .eq("stuId",Stu.getStuId())
+                                        .eq("stuName",Stu.getStuName())
+                                                .eq("groupId",Stu.getGroupId())
+                                                        .eq("groupName",Stu.getGroupName());
+        List<Usrtable> list=new ArrayList<>();
+        for(Classdtable classdtable:classdtableMapper.selectList(queryWrapper)){
+            list.add(usrtableMapper.selectById(classdtable.getStuId()));
+        }
+        return list;
+    }
+
 }

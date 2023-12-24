@@ -1,5 +1,6 @@
 package com.example.emb.controller;
 
+import com.example.emb.entity.Classdtable;
 import com.example.emb.until.JsonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,14 +39,14 @@ public class TeacherImStuController {
 
     @ApiOperation("手动删除学生info")
     @PostMapping("DeleStu")
-    private JsonResult DeleteStu(String uid,int classId){
+    private JsonResult DeleteStu(int classStuId){
 
         return new JsonResult(200);
     }
 
     @ApiOperation("查询学生info")
     @PostMapping("SearchStu")
-    private JsonResult SearchStu(User stu,int classId){
+    private JsonResult SearchStu(Classdtable stu, int classId){
 //    复用接口
         return new JsonResult(200);
     }
