@@ -1,5 +1,6 @@
 package com.example.emb.mapper;
 
+import com.example.emb.entity.Classdtable;
 import com.example.emb.entity.Classtable;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;

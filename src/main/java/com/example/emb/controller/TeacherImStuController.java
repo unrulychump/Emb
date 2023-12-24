@@ -20,6 +20,7 @@ public class TeacherImStuController {
     private JsonResult ImportStu(@RequestParam("file") MultipartFile file){
 
         if (!file.getContentType().equals("application/vnd.ms-excel") && !file.getContentType().equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+
             return new JsonResult(10001,"上传非excel文件");
         }
         //如果操作失败了，应该要有这里有自动回滚和手动回滚的方法
@@ -30,21 +31,21 @@ public class TeacherImStuController {
 
     @ApiOperation("手动导入学生info")
     @PostMapping("InsertStu")
-    private JsonResult InsertStu(User stu){
+    private JsonResult InsertStu(String uid,int classId){
 
         return new JsonResult(200);
     }
 
     @ApiOperation("手动删除学生info")
     @PostMapping("DeleStu")
-    private JsonResult DeleteStu(String uid){
+    private JsonResult DeleteStu(String uid,int classId){
 
         return new JsonResult(200);
     }
 
     @ApiOperation("查询学生info")
     @PostMapping("SearchStu")
-    private JsonResult SearchStu(User stu){
+    private JsonResult SearchStu(User stu,int classId){
 //    复用接口
         return new JsonResult(200);
     }

@@ -25,6 +25,9 @@ public class Classdtable implements Serializable {
 
     private Integer id;
 
+    @TableField("classId")
+    private int classId;
+
     @TableField("className")
     private String className;
 

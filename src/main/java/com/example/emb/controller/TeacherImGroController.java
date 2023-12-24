@@ -41,7 +41,7 @@ public class TeacherImGroController {
     }
 
     @ApiOperation("手动删除小组info")
-    @PostMapping("DeleStu")
+    @PostMapping("DeleteStu")
     private JsonResult DeleteGro(String GroupId){
 
         return new JsonResult(200);

@@ -37,5 +37,8 @@ public class Classtable implements Serializable {
     @TableField("endTime")
     private Date endTime;
 
+    @TableField("year")
+    private int year;
+
 
 }
