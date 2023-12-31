@@ -1,18 +1,19 @@
-package com.example.emb.controller;
-
-
+package com.example.emb.service.common;
 
 import com.example.emb.until.JsonResult;
 import io.minio.*;
 import io.minio.errors.MinioException;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -21,16 +22,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
-/**
- * @program: gmall-parent
- * @author: Mr.Zhuo
- * @create: 2022-04-03 21:41
- **/
-@RestController
-@Api(tags = "上传文件获得url")
-@RequestMapping("MinIO")
-public class MinIoController {
-
+@Service
+public class MinioService {
     //  获取文件上传对应的地址
     @Value("${minio.url}")
     public String endpointUrl;

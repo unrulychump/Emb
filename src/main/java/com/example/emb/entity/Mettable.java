@@ -2,6 +2,8 @@ package com.example.emb.entity;
 
 import java.util.Date;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,6 +21,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="Mettable对象", description="")
+@TableName("mettable")
 public class Mettable implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -5,6 +5,7 @@ import com.example.emb.entity.*;
 import com.example.emb.mapper.ClasstableMapper;
 import com.example.emb.mapper.GroupdtableMapper;
 import com.example.emb.mapper.GrouptableMapper;
+import com.example.emb.mapper.UsrtableMapper;
 import com.example.emb.service.TeacherImpGroupService;
 import com.example.emb.service.TeacherImpStuService;
 import com.example.emb.service.exception.ErrorGroupNameException;
@@ -35,6 +36,9 @@ public class TeacherImpGroupServiceImpl  implements TeacherImpGroupService {
     GroupdtableMapper groupdtableMapper;
     @Autowired
     ClasstableMapper classtableMapper;
+    @Autowired
+    UsrtableMapper usrtableMapper;
+
 
     /**
      * 先查看班级是不是已经存在了，然后再在插入的过程中查看：
@@ -106,6 +110,12 @@ public class TeacherImpGroupServiceImpl  implements TeacherImpGroupService {
                     }
                     groupdtable.setGroupId(grouptable1.getId());
                     groupdtableMapper.insert(groupdtable);
+
+                    //修改现在的学生的小组id
+                    Usrtable usrtable=new Usrtable().setGroupIdNow(grouptable1.getId());
+                    QueryWrapper<Usrtable>queryWrapper1=new QueryWrapper<>();
+                    queryWrapper1.eq("id",studentId);
+                    usrtableMapper.update(usrtable,queryWrapper1);
                 }
                 else{
                     //说明原来不存在的
@@ -115,6 +125,11 @@ public class TeacherImpGroupServiceImpl  implements TeacherImpGroupService {
                     }
                     groupdtable.setGroupId(grouptable.getId());
                     groupdtableMapper.insert(groupdtable);
+                    //修改现在的学生的小组id
+                    Usrtable usrtable=new Usrtable().setGroupIdNow(grouptable.getId());
+                    QueryWrapper<Usrtable>queryWrapper1=new QueryWrapper<>();
+                    queryWrapper1.eq("id",studentId);
+                    usrtableMapper.update(usrtable,queryWrapper1);
                 }
 
 //                groupTableList.add()

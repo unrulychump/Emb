@@ -38,6 +38,9 @@ public class Usrtable implements Serializable {
 
     private String className;
 
+    @TableField("groupIdNow")
+    private int groupIdNow;
+
     @TableField("College")
     private String College;
 
