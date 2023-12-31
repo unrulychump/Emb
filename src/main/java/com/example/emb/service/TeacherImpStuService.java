@@ -14,6 +14,7 @@ public interface TeacherImpStuService {
 
     //新建班级
     void newClass(String Name, Date modifiedTime,Date endTime,int year);
+
     //根据excel导入学生info
     void ImportStuByExcel(MultipartFile file, int classId);
 

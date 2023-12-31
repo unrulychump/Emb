@@ -22,16 +22,25 @@ import lombok.experimental.Accessors;
 @ApiModel(value="Groupdtable对象", description="")
 public class Groupdtable implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionID = 1L;
+
+    @TableField("id")
+    private int id;
 
     @TableId("Uid")
     private Long Uid;
+
+    @TableField("GroupId")
+    private int GroupId;
 
     @TableField("classId")
     private Integer classId;
 
     @TableField("className")
     private String className;
+
+    @TableField("GroupName")
+    private String GroupName;
 
     private String name;
 

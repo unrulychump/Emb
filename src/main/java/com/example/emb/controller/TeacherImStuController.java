@@ -38,7 +38,7 @@ public class TeacherImStuController {
     }
 
     @ApiOperation("手动删除学生info")
-    @PostMapping("DeleStu")
+    @PostMapping("DeleteStu")
     private JsonResult DeleteStu(int classStuId){
 
         return new JsonResult(200);
