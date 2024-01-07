@@ -38,5 +38,8 @@ public class Browtable implements Serializable {
     @TableField("isReturned")
     private Date isReturned;
 
+    @TableField("broNum")
+    private int broNum;
+
 
 }

@@ -39,7 +39,7 @@ public class MinioService {
 
     @ApiOperation("上传文件")
     @PostMapping("/uploadFile")
-    public JsonResult<String> uploadFile(MultipartFile file) {
+    public String uploadFile(MultipartFile file) {
 
         try {
             // 使用MinIO服务的URL，端口，Access key和Secret key创建一个MinioClient对象
@@ -71,10 +71,10 @@ public class MinioService {
 
             // 返回文件访问路径
             String url = endpointUrl + "/" + bucketName + "/" + fileName;
-            return new JsonResult<String >(200,url);
+            return url;
 
         } catch (Exception e) {
-            return new JsonResult<String>(4009,"上传错误");
+            return "wrong";
         }
     }
 

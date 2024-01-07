@@ -4,12 +4,14 @@ import com.example.emb.entity.Mettable;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @Service
 public interface EquipmentService {
 
+    //要加入基本的分页操作
     //基本的操作
 
     //展示所有器材
@@ -30,14 +32,16 @@ public interface EquipmentService {
     ResponseEntity<InputStreamResource> DownloadZip(int id);
 
     //教师部分
-    //上传
-    void PostEquipment();
+    // 上传
+    //上传基本的文件描述 ,photo,zip;
+    void PostEquipment(Mettable mettable, MultipartFile photo,MultipartFile zip);
     //修改
-    void UpdateEquipment();
+    void UpdateEquipment(Mettable mettable ,MultipartFile photo,MultipartFile zip);
     //删除
-    void DeleteEquipment();
+    void DeleteEquipment(int id);
+
     //归还
-    void ReturnEquipment();
+    void ReturnEquipment(int  BrowId);
 
 
 }
