@@ -22,7 +22,7 @@ public class UsrServiceImpl implements UsrService {
     CusteleMapper custeleMapper;
 
     @Override
-    public long logIn(String id, String password) {
+    public Usrtable logIn(String id, String password) {
         QueryWrapper<Usrtable> queryWrapper=new QueryWrapper<>();
 
         queryWrapper.eq("id",Long.parseLong(id));
@@ -33,14 +33,14 @@ public class UsrServiceImpl implements UsrService {
         }
         if(usr.getMd5()!=null){
             if(usr.getPassword().equals(getMD5Password(password,usr.getMd5()))){
-                return Long.parseLong(id);
+                return usr;
             }
             else
                 throw new PwdErrorException("密码错误");
         }
         else {
             if (usr.getPassword().equals(password))
-                return Long.parseLong(id);
+                return usr;
             else
                 throw new PwdErrorException("密码错误");
         }

@@ -5,6 +5,11 @@ import java.io.Serializable;
 
 //Json格式响应
 public class JsonResult<E> implements Serializable {
+
+
+
+
+
     //    状态码
     private Integer state;
     //    描述信息

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public interface UsrService {
 
     //登陆要返回uid的
-    long logIn(String id,String password);
+    Usrtable logIn(String id,String password);
 
     //注册 这里还没有想好怎么写，验证码怎么搞上去
 
